@@ -1,0 +1,978 @@
+<!DOCTYPE html><html><head>
+      <title>Network Science Datacamp</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\Axe-Yue-CHEN\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.6.2\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <h1 class="mume-header" id="networkx-api">NetworkX API</h1>
+
+<p>graph format: matrix arc circus..</p>
+<pre data-role="codeBlock" data-info class="language-"><code>Import network as nx    
+import nxviz as nv  #for vis
+
+# Create the CircosPlot object: c
+c = CircosPlot(G, node_color=&apos;bipartite&apos;, node_grouping=&apos;bipartite&apos;, node_order=&apos;centrality&apos;)
+
+# Draw c to the screen
+c.draw()
+
+# Display the plot
+plt.show()
+</code></pre><p>&#xA0;</p>
+<h1 class="mume-header" id="bipartite-graphs">Bipartite graphs</h1>
+
+<p>2 sets of node<br>
+not connect to another set<br>
+&#xA0;</p>
+<h2 class="mume-header" id="filtering-graphs">Filtering graphs</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Define get_nodes_from_partition()
+def get_nodes_from_partition(G, partition):
+    # Initialize an empty list for nodes to be returned
+    nodes = []
+    # Iterate over each node in the graph G
+    for n in G.nodes():
+        # Check that the node belongs to the particular partition
+        if G.nodes[n][&apos;bipartite&apos;] == partition:
+            # If so, append it to the list of nodes
+            nodes.append(n)
+    return nodes
+
+# Print the number of nodes in the &apos;projects&apos; partition
+print(len(get_nodes_from_partition(G, &apos;projects&apos;)))
+
+# Print the number of nodes in the &apos;users&apos; partition
+print(len(get_nodes_from_partition(G, &apos;users&apos;)))
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="centrality-%E8%BF%9E%E6%8E%A5%E7%9A%84nodes%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E8%BF%9E%E6%8E%A5%E7%9A%84nodes">Centrality = &#x8FDE;&#x63A5;&#x7684;nodes/&#x6240;&#x6709;&#x53EF;&#x80FD;&#x8FDE;&#x63A5;&#x7684;nodes</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Import matplotlib
+import matplotlib.pyplot as plt
+
+# Get the &apos;users&apos; nodes: user_nodes
+user_nodes = get_nodes_from_partition(G, partition=&apos;users&apos;)
+
+# Compute the degree centralities: dcs
+dcs = nx.degree_centrality(G)
+
+# Get the degree centralities for user_nodes: user_dcs
+user_dcs = [dcs[n] for n in user_nodes]
+
+# Plot the degree distribution of users_dcs
+plt.yscale(&apos;log&apos;)
+plt.hist(user_dcs, bins=20)
+plt.show()
+</code></pre><h1 class="mume-header" id="recommendation-system-with-bypartite-graphs">Recommendation System with Bypartite Graphs</h1>
+
+<p>simple:<br>
+which other users are connected to item2 other than user1<br>
+user3 conn to item2 and item1<br>
+so recommend item1 to user1<br>
+&#xA0;</p>
+<h2 class="mume-header" id="find-shared-repositories-between-users">find shared repositories between users</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code>def shared_partition_nodes(G, node1, node2):
+    # Check that the nodes belong to the same partition
+    assert G.nodes[node1][&apos;bipartite&apos;] == G.nodes[node2][&apos;bipartite&apos;]
+
+    # Get neighbors of node 1: nbrs1
+    nbrs1 = G.neighbors(node1)
+    # Get neighbors of node 2: nbrs2
+    nbrs2 = G.neighbors(node2)
+
+    # Compute the overlap using set intersections
+    overlap = set(nbrs1).intersection(nbrs2)
+    return overlap
+
+# Print the number of shared repositories between users &apos;u7909&apos; and &apos;u2148&apos;
+print(len(shared_partition_nodes(G, &apos;u7909&apos;, &apos;u2148&apos;)))
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="calculate-similarity-between-users">calculate similarity between users</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code>def user_similarity(G, user1, user2, proj_nodes):
+    # Check that the nodes belong to the &apos;users&apos; partition
+    assert G.nodes[user1][&apos;bipartite&apos;] == &apos;users&apos;
+    assert G.nodes[user1][&apos;bipartite&apos;] == &apos;users&apos;
+
+    # Get the set of nodes shared between the two users
+    shared_nodes = shared_partition_nodes(G, user1, user2)
+
+    # Return the fraction of nodes in the projects partition
+    return len(shared_nodes) / len(proj_nodes)
+
+# Compute the similarity score between users &apos;u4560&apos; and &apos;u1880&apos;
+project_nodes = get_nodes_from_partition(G, &apos;projects&apos;)
+similarity_score = user_similarity(G, &apos;u4560&apos;, &apos;u1880&apos;, project_nodes)
+
+print(similarity_score)
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="find-similar-users">find similar users</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code>from collections import defaultdict
+
+def most_similar_users(G, user, user_nodes, proj_nodes):
+    # Data checks
+    assert G.nodes[user][&apos;bipartite&apos;] == &apos;users&apos;
+
+    # Get other nodes from user partition
+    user_nodes = set(user_nodes)
+    user_nodes.remove(user)
+
+    # Create the dictionary: similarities
+    similarities = defaultdict(list)
+    for n in user_nodes:
+        similarity = user_similarity(G, user, n, proj_nodes)
+        similarities[similarity].append(n)
+
+    # Compute maximum similarity score: max_similarity
+    max_similarity = max(similarities.keys())
+
+    # Return list of users that share maximal similarity
+    return similarities[max_similarity]
+
+user_nodes = get_nodes_from_partition(G, &apos;users&apos;)
+project_nodes = get_nodes_from_partition(G, &apos;projects&apos;)
+
+print(most_similar_users(G, &apos;u4560&apos;, user_nodes, project_nodes))
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="recommend-repositories-by-a-second-users-neighbor">recommend repositories by a second user&apos;s neighbor</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code># returns the repositories that the from_user is connected to that the to_user is not connected to.
+
+def recommend_repositories(G, from_user, to_user):
+    # Get the set of repositories that from_user has contributed to
+    from_repos = set(G.neighbors(from_user))
+    # Get the set of repositories that to_user has contributed to
+    to_repos = set(G.neighbors(to_user))
+
+    # Identify repositories that the from_user is connected to that the to_user is not connected to
+    return from_repos.difference(to_repos)
+
+# Print the repositories to be recommended
+print(recommend_repositories(G, &apos;u7909&apos;, &apos;u2148&apos;))
+</code></pre><p>&#xA0;</p>
+<h1 class="mume-header" id="graph-projection">Graph Projection</h1>
+
+<p>which customers are related to each other?<br>
+eg. user1 and user2 both buy same item, thus user1 and user2 with edge, and user3 might not edges with the two</p>
+<h2 class="mume-header" id="file-format">file format</h2>
+
+<p>flat edge list<br>
+csv with nodelist + metadata, edgelist + metadata<br>
+&#xA0;<br>
+read edge txt file</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Import networkx
+import networkx as nx
+
+# Read in the data: g
+G = nx.read_edgelist(&apos;american-revolution.edgelist&apos;)
+
+# Assign nodes to &apos;clubs&apos; or &apos;people&apos; partitions
+for n, d in G.nodes(data=True):
+    if &apos;.&apos; in n:
+        G.nodes[n][&apos;bipartite&apos;] = &apos;people&apos;
+    else:
+        G.nodes[n][&apos;bipartite&apos;] = &apos;clubs&apos;
+        
+# Print the edges of the graph
+print(G.edges())
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="projection-from-bipartite-to-single-graph-in-people-or-club">projection (from bipartite to single graph in people or club)</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Prepare the nodelists needed for computing projections: people, clubs
+# This exercise shows you two ways to do it, one with `data=True` and one without.
+people = [n for n in G.nodes() if G.nodes[n][&apos;bipartite&apos;] == &apos;people&apos;]
+clubs = [n for n, d in G.nodes(data=True) if d[&apos;bipartite&apos;] == &apos;clubs&apos;]
+
+# Compute the people and clubs projections: peopleG, clubsG
+peopleG = nx.bipartite.projected_graph(G, people)
+clubsG = nx.bipartite.projected_graph(G, clubs)
+</code></pre><p>&#xA0;</p>
+<p>Plot degree centrality on projection</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import matplotlib.pyplot as plt 
+
+# Plot the degree centrality distribution of both node partitions from the original graph
+plt.figure()
+original_dc = nx.bipartite.degree_centrality(G, people)
+# Remember that you can directly plot dictionary values.
+plt.hist(original_dc.values(), alpha=0.5)
+plt.yscale(&apos;log&apos;)
+plt.title(&apos;Bipartite degree centrality&apos;)
+plt.show()
+
+# Plot the degree centrality distribution of the peopleG graph
+plt.figure()  
+people_dc = nx.degree_centrality(peopleG)
+plt.hist(people_dc.values())
+plt.yscale(&apos;log&apos;)
+plt.title(&apos;Degree centrality of people partition&apos;)
+plt.show()
+
+# Plot the degree centrality distribution of the clubsG graph
+plt.figure() 
+clubs_dc = nx.degree_centrality(clubsG)
+plt.hist(clubs_dc.values())
+plt.yscale(&apos;log&apos;)
+plt.title(&apos;Degree centrality of clubs partition&apos;)
+plt.show()
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="bipartite-matrices">Bipartite Matrices</h2>
+
+<p>row node in one partition<br>
+column node in another partition<br>
+sparse matrix<br>
+matrix @ transposed matrix = projetion matrix (adjacency matrix)</p>
+<p>Compute adjacency matrix</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Get the list of people and list of clubs from the graph: people_nodes, clubs_nodes
+people_nodes = get_nodes_from_partition(G, &apos;people&apos;)
+clubs_nodes = get_nodes_from_partition(G, &apos;clubs&apos;)
+
+# Compute the biadjacency matrix: bi_matrix
+bi_matrix = nx.bipartite.biadjacency_matrix(G, row_order=people_nodes, column_order=clubs_nodes)
+
+# Compute the user-user projection: user_matrix
+user_matrix = bi_matrix @ bi_matrix.T
+
+print(user_matrix)
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="find-shared-membership-transposition">Find shared membership: Transposition</h2>
+
+<pre data-role="codeBlock" data-info class="language-"><code>import numpy as np
+
+# Find out the names of people who were members of the most number of clubs
+diag = user_matrix.diagonal() 
+indices = np.where(diag == diag.max())[0]  
+print(&apos;Number of clubs: {0}&apos;.format(diag.max()))
+print(&apos;People with the most number of memberships:&apos;)
+for i in indices:
+    print(&apos;- {0}&apos;.format(people_nodes[i]))
+
+# Set the diagonal to zero and convert it to a coordinate matrix format
+user_matrix.setdiag(0)
+users_coo = user_matrix.tocoo()
+
+# Find pairs of users who shared membership in the most number of clubs
+indices2 = np.where(users_coo.data == users_coo.data.max())[0]
+print(&apos;People with most number of shared memberships:&apos;)
+for idx in indices2:
+    print(&apos;- {0}, {1}&apos;.format(people_nodes[users_coo.row[idx]], people_nodes[users_coo.col[idx]]))  
+</code></pre><p>&#xA0;</p>
+<h1 class="mume-header" id="pandas-graphs">Pandas &lt;=&gt; Graphs</h1>
+
+<p>csv for store network data<br>
+advantage:<br>
+readable<br>
+further analysis<br>
+disadvantage:<br>
+repetative<br>
+disk space</p>
+<p>2 list<br>
+node list, &#x6BCF;&#x884C;&#x4E00;&#x4E2A;&#x8282;&#x70B9;<br>
+edge list, &#x6BCF;&#x884C;&#x4E00;&#x4E2A;&#x8FDE;&#x63A5;</p>
+<h3 class="mume-header" id="nodelist-to-df">nodelist to df</h3>
+
+<pre data-role="codeBlock" data-info="# Initialize a list to store each edge as a record: nodelist" class="language-#"><code>nodelist = []
+for n, d in G_people.nodes(data=True):
+    # nodeinfo stores one &quot;record&quot; of data as a dict
+    nodeinfo = {&apos;person&apos;: n} 
+    
+    # Update the nodeinfo dictionary 
+    # add info to the existed dict which includes info &apos;person&apos;
+    nodeinfo.update(d)
+    
+    # Append the nodeinfo to the node list
+    nodelist.append(nodeinfo)
+
+# Create a pandas DataFrame of the nodelist: node_df
+node_df = pd.DataFrame(nodelist)
+print(node_df.head())
+</code></pre><h3 class="mume-header" id="edgelist-to-df">edgelist to df</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Initialize a list to store each edge as a record: edgelist
+edgelist = []
+for n1, n2, d in G_people.edges(data=True):
+    # Initialize a dictionary that shows edge information: edgeinfo
+    edgeinfo = {&apos;node1&apos;:n1, &apos;node2&apos;:n2}
+    
+    # Update the edgeinfo data with the edge metadata
+    edgeinfo.update(d)
+    
+    # Append the edgeinfo to the edgelist
+    edgelist.append(edgeinfo)
+    
+# Create a pandas DataFrame of the edgelist: edge_df
+edge_df = pd.DataFrame(edgelist)
+print(edge_df.head())
+</code></pre><h1 class="mume-header" id="graphs-time-dynamic-graphs">Graphs &amp; time-dynamic graphs</h1>
+
+<h2 class="mume-header" id="time-series">time series</h2>
+
+<p>statistics change as time (trend)<br>
+rate change over a sliding window of time<br>
+eg. tracking weight over time, tracking stock investment value over time<br>
+&#xA0;</p>
+<h2 class="mume-header" id="evolving-graphs">evolving graphs</h2>
+
+<p>eg. communication networks changing</p>
+<p>assumptions:<br>
+edge changes over time, node constant<br>
+both changing<br>
+&#xA0;</p>
+<p>List of graphs</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import networkx as nx 
+
+months = range(4, 11)
+
+# Initialize an empty list: Gs
+Gs = [] 
+for month in months:
+    # Instantiate a new undirected graph: G
+    G = nx.Graph()
+    
+    # Add in all nodes that have ever shown up to the graph
+    G.add_nodes_from(data[&apos;sender&apos;])
+    G.add_nodes_from(data[&apos;recipient&apos;])
+    
+    # Filter the DataFrame so that there&apos;s only the given month
+    df_filtered = data[data[&apos;month&apos;] == month]
+    
+    # Add edges from filtered DataFrame
+    # add_edges_from() method with df_filtered[&apos;sender&apos;] and 
+    # df_filtered[&apos;recipient&apos;] passed into zip()
+    G.add_edges_from(zip(df_filtered[&apos;sender&apos;], df_filtered[&apos;recipient&apos;]))
+    
+    # Append G to the list of graphs
+    Gs.append(G)
+    
+print(len(Gs))
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="graph-differences">graph differences</h2>
+
+<p>assuming node doesn&apos;t change<br>
+set differences to show changing</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import networkx as nx  
+# Instantiate a list of graphs that show edges added: added
+added = []
+# Instantiate a list of graphs that show edges removed: removed
+removed = []
+# Here&apos;s the fractional change over time
+fractional_changes = []
+window = 1  
+i = 0      
+
+for i in range(len(Gs) - window):
+    g1 = Gs[i]
+    g2 = Gs[i + window]
+        
+    # Compute graph difference here
+    added.append(nx.difference(g2, g1))   
+    removed.append(nx.difference(g1, g2))
+    
+    # Compute change in graph size over time
+    fractional_changes.append((len(g2.edges()) - len(g1.edges())) / len(g1.edges()))
+    
+# Print the fractional change
+print(fractional_changes)
+</code></pre><p>&#xA0;</p>
+<p>plot changes of edges over time</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Import matplotlib
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+
+# Plot the number of edges added over time
+edges_added = [len(g.edges) for g in added]
+plot1 = ax1.plot(edges_added, label=&apos;added&apos;, color=&apos;orange&apos;)
+
+# Plot the number of edges removed over time
+edges_removed = [len(g.edges) for g in removed]
+plot2 = ax1.plot(edges_removed, label=&apos;removed&apos;, color=&apos;purple&apos;)
+
+# Set yscale to logarithmic scale
+ax1.set_yscale(&apos;log&apos;)  
+ax1.legend()
+
+# 2nd axes shares x-axis with 1st axes object
+ax2 = ax1.twinx()
+
+# Plot the fractional changes over time
+plot3 = ax2.plot(fractional_changes, label=&apos;fractional change&apos;, color=&apos;green&apos;)
+
+# Here, we create a single legend for both plots
+lines1, labels1 = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax2.legend(lines1 + lines2, labels1 + labels2, loc=0)
+plt.axhline(0, color=&apos;green&apos;, linestyle=&apos;--&apos;)
+plt.show()
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="evoving-graph-statistics">evoving graph statistics</h2>
+
+<p>eg. num of nodes, num of edges, degree distribtion, centrality degree</p>
+<p>cumulative distribution<br>
+degree centrality distribution, hist and cumulative distribution<br>
+&#xA0;</p>
+<p>plot edges changing over time</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Import matplotlib
+import matplotlib.pyplot as plt
+
+fig = plt.figure()
+
+# Create a list of the number of edges per month
+edge_sizes = [len(g.edges) for g in Gs]
+
+# Plot edge sizes over time
+plt.plot(edge_sizes)
+plt.xlabel(&apos;Time elapsed from first month (in months).&apos;) 
+plt.ylabel(&apos;Number of edges&apos;)                           
+plt.show() 
+</code></pre><p>&#xA0;</p>
+<p>plot centrality with cumulative distribution</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Import necessary modules
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Create a list of degree centrality scores month-by-month
+cents = []
+for G in Gs:
+    cent = nx.degree_centrality(G)
+    cents.append(cent)
+
+
+# Plot ECDFs over time
+fig = plt.figure()
+for i in range(len(cents)):
+    x, y = ECDF(cents[i].values()) # ECDF, used for cumulative distribution
+    plt.plot(x, y, label=&apos;Month {0}&apos;.format(i+1)) 
+plt.legend()
+plt.show()
+</code></pre><p>&#xA0;</p>
+<h2 class="mume-header" id="zooming-in-and-zooming-out">zooming in and zooming out</h2>
+
+<p>graph exploration at scales<br>
+global: centrality distribution<br>
+local: connectivity and structures</p>
+<p>zooming on nodes</p>
+<p>summarizing evolving node statisticsf<br>
+eg. user-item dataset, how purchase pattern changes over time<br>
+eg. &#x67D0;&#x7528;&#x6237;&#x611F;&#x5174;&#x8DA3;&#x7684;&#x5546;&#x54C1;&#x968F;&#x65F6;&#x95F4;&#x7684;&#x53D8;&#x5316;</p>
+<p>defaltdict library, defaultdict(list)<br>
+&#x540C;&#x65F6;&#x65B9;&#x4FBF;&#x76F4;&#x63A5;&#x64CD;&#x4F5C;&#x4E0D;&#x5B58;&#x5728;&#x7684;key&#xFF08;&#x4E0D;&#x5B58;&#x5728;&#x76F4;&#x63A5;&#x52A0;&#x5165;&#x518D;&#x64CD;&#x4F5C;&#xFF09;<br>
+&#xA0;</p>
+<p>Find nodes with top degree centralities</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Get the top 5 unique degree centrality scores: top_dcs
+top_dcs = sorted(set(nx.degree_centrality(G).values()), reverse=True)[0:5]
+
+# Create list of nodes that have the top 5 highest overall degree centralities
+top_connected = []
+for n, dc in nx.degree_centrality(G).items():
+    if dc in top_dcs:
+        top_connected.append(n)
+        
+# Print the number of nodes that share the top 5 degree centrality scores
+print(len(top_connected))
+</code></pre><p>&#xA0;</p>
+<p>Visualizing node neighbor over time</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Import necessary modules
+import matplotlib.pyplot as plt
+from collections import defaultdict
+
+# Create a defaultdict in which the keys are nodes and the values are a list of connectivity scores over time
+connectivity = defaultdict(list)
+for n in top_connected:
+    for g in Gs:
+        connectivity[n].append(len(list(g.neighbors(n))))
+
+# Plot the connectivity for each node
+fig = plt.figure() 
+for n, conn in connectivity.items():
+    plt.plot(conn, label=n) 
+plt.legend()  
+plt.show()
+</code></pre><p>&#xA0;</p>
+<h1 class="mume-header" id="case-analysis-in-network-science">Case Analysis in Network Science</h1>
+
+<h3 class="mume-header" id="dataset">Dataset</h3>
+
+<p>students, forums<br>
+pandas df graph<br>
+projection of the bipartite<br>
+vis graph<br>
+time series filtering and analysis<br>
+&#xA0;</p>
+<p>eg. zip to get edges:</p>
+<pre data-role="codeBlock" data-info class="language-"><code>G.add_edges_from(zip(df[&apos;customers], df[&apos;products]))
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="create-a-graph-from-the-pandas-dataframe">Create a graph from the pandas DataFrame</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code>import networkx as nx
+
+# Instantiate a new Graph: G
+G = nx.Graph()
+
+# Add nodes from each of the partitions
+G.add_nodes_from(data[&apos;student&apos;], bipartite=&apos;student&apos;)
+G.add_nodes_from(data[&apos;forum&apos;], bipartite=&apos;forum&apos;)
+
+# Add in each edge along with the date the edge was created
+for r, d in data.iterrows():
+    G.add_edge(d[&apos;student&apos;], d[&apos;forum&apos;], date=d[&apos;date&apos;])
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="visualize-the-degree-centrality-distribution-of-the-students-projection">Visualize the degree centrality distribution of the students projection</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Import necessary modules
+import matplotlib.pyplot as plt
+import networkx as nx
+
+# Get the student partition&apos;s nodes: student_nodes
+student_nodes = [n for n, d in G.nodes(data=True) if d[&apos;bipartite&apos;] == &apos;student&apos;]
+
+# Create the students nodes projection as a graph: G_students
+G_students = nx.bipartite.projected_graph(G, student_nodes)
+
+# Calculate the degree centrality using nx.degree_centrality: dcs
+dcs = nx.degree_centrality(G_students)
+
+# Plot the histogram of degree centrality values
+plt.hist(list(dcs.values()))
+plt.yscale(&apos;log&apos;)  
+plt.show() 
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="visualize-the-degree-centrality-distribution-of-the-forums-projection">Visualize the degree centrality distribution of the forums projection</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Import necessary modules
+import matplotlib.pyplot as plt 
+import networkx as nx
+
+# Get the forums partition&apos;s nodes: forum_nodes
+forum_nodes = [n for n, d in G.nodes(data=True) if d[&apos;bipartite&apos;]==&apos;forum&apos;]
+
+# Create the forum nodes projection as a graph: G_forum
+G_forum = nx.bipartite.projected_graph(G, forum_nodes)
+
+# Calculate the degree centrality using nx.degree_centrality: dcs
+dcs = nx.degree_centrality(G_forum)
+
+# Plot the histogram of degree centrality values
+plt.hist(list(dcs.values()))
+plt.yscale(&apos;log&apos;) 
+plt.show() 
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="time-filter-on-edges">Time filter on edges</h3>
+
+<p>Filter: eg. like sales more than 10 times between user and item<br>
+&#xA0;<br>
+Time filter on edges</p>
+<pre data-role="codeBlock" data-info class="language-"><code>import networkx as nx
+from datetime import datetime
+
+# Instantiate a new graph: G_sub
+G_sub = nx.Graph()
+
+# Add nodes from the original graph
+G_sub.add_nodes_from(G.nodes(data=True))
+
+# Add edges using a list comprehension with one conditional on the edge dates, that the date of the edge is earlier than 2004-05-16.
+G_sub.add_edges_from([(u, v, d) for u, v, d in G.edges(data=True) if d[&apos;date&apos;] &lt; datetime(2004,5,16)])
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="visualize-filtered-graph-using-nxviz">Visualize filtered graph using nxviz</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Import necessary modules
+from nxviz import CircosPlot
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Compute degree centrality scores of each node
+dcs = nx.bipartite.degree_centrality(G, nodes=forum_nodes)
+for n, d in G_sub.nodes(data=True):
+    G_sub.nodes[n][&apos;dc&apos;] = dcs[n]
+
+# Create the CircosPlot object: c
+c = CircosPlot(G_sub, node_color=&apos;bipartite&apos;, node_grouping=&apos;bipartite&apos;, node_order=&apos;dc&apos;)
+
+# Draw c to screen
+c.draw()
+
+# Display the plot
+plt.show() 
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="plot-number-of-posts-being-made-over-time">Plot number of posts being made over time</h3>
+
+<p>Time series analysis: graph statistics chaning by time<br>
+&#xA0;<br>
+Plot number of posts being made over time</p>
+<pre data-role="codeBlock" data-info class="language-"><code># Import necessary modules
+from datetime import timedelta  
+import matplotlib.pyplot as plt
+
+# Define current day and timedelta of 2 days
+curr_day = dayone
+td = timedelta(2)
+
+# Initialize an empty list of posts by day
+n_posts = []
+while curr_day &lt; lastday:
+    if curr_day.day == 1:
+        print(curr_day) 
+    # Filter edges such that they are within the sliding time window: edges
+    edges = [(u, v, d) for u, v, d in G.edges(data=True) if d[&apos;date&apos;] &gt;= curr_day and d[&apos;date&apos;] &lt; curr_day + td]
+    
+    # Append number of edges to the n_posts list
+    n_posts.append(len(edges))
+    
+    # Increment the curr_day by the time delta
+    curr_day += td
+    
+# Create the plot
+plt.plot(n_posts)  
+plt.xlabel(&apos;Days elapsed&apos;)
+plt.ylabel(&apos;Number of posts&apos;)
+plt.show()  
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="extract-the-mean-degree-centrality-day-by-day-on-the-students-partition">Extract the mean degree centrality day-by-day on the students partition</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code>from datetime import datetime, timedelta
+import numpy as np
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Initialize a new list: mean_dcs
+mean_dcs = []
+curr_day = dayone
+td = timedelta(days=2)
+
+while curr_day &lt; lastday:
+    if curr_day.day == 1:
+        print(curr_day)  
+    # Instantiate a new graph containing a subset of edges: G_sub
+    G_sub = nx.Graph()
+    # Add nodes from G
+    G_sub.add_nodes_from(G.nodes(data=True))
+    # Add in edges that fulfill the criteria
+    G_sub.add_edges_from([(u, v, d) for u, v, d in G.edges(data=True) if d[&apos;date&apos;] &gt;= curr_day and d[&apos;date&apos;] &lt; curr_day + td])
+    
+    # Get the students projection
+    G_student_sub = nx.bipartite.projected_graph(G_sub, student_nodes)
+    # Compute the degree centrality of the students projection
+    dc = nx.degree_centrality(G_student_sub)
+    # Append mean degree centrality to the list mean_dcs
+    mean_dcs.append(np.mean(list(dc.values())))
+    # Increment the time
+    curr_day += td
+    
+plt.plot(mean_dcs)
+plt.xlabel(&apos;Time elapsed&apos;)
+plt.ylabel(&apos;Degree centrality.&apos;)
+plt.show()
+</code></pre><p>&#xA0;</p>
+<h3 class="mume-header" id="find-the-most-popular-forums-day-by-day">Find the most popular forums day-by-day</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code># Import necessary modules
+from datetime import timedelta
+import networkx as nx
+import matplotlib.pyplot as plt
+
+most_popular_forums = []
+highest_dcs = []
+curr_day = dayone 
+td = timedelta(days=1)  
+
+while curr_day &lt; lastday:  
+    if curr_day.day == 1:  
+        print(curr_day)  
+    G_sub = nx.Graph()
+    G_sub.add_nodes_from(G.nodes(data=True))   
+    G_sub.add_edges_from([(u, v, d) for u, v, d in G.edges(data=True) if d[&apos;date&apos;] &gt;= curr_day and d[&apos;date&apos;] &lt; curr_day + td])
+    
+    # Get the degree centrality 
+    dc = nx.bipartite.degree_centrality(G_sub, forum_nodes)
+    # Filter the dictionary such that there&apos;s only forum degree centralities
+    forum_dcs = {n:dc for n, dc in dc.items() if n in forum_nodes}
+    # Identify the most popular forum(s) 
+    most_popular_forum = [n for n, dc in forum_dcs.items() if dc == max(forum_dcs.values()) and dc != 0] 
+    most_popular_forums.append(most_popular_forum) 
+    # Store the highest dc values in highest_dcs
+    highest_dcs.append(max(forum_dcs.values()))
+    
+    curr_day += td  
+    
+plt.figure(1) 
+plt.plot([len(forums) for forums in most_popular_forums], color=&apos;blue&apos;, label=&apos;Forums&apos;)
+plt.ylabel(&apos;Number of Most Popular Forums&apos;)
+plt.show()
+
+plt.figure(2)
+plt.plot(highest_dcs, color=&apos;orange&apos;, label=&apos;DC Score&apos;)
+plt.ylabel(&apos;Top Degree Centrality Score&apos;)
+plt.show()
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
