@@ -1,2 +1,7 @@
-# Intermediate-Network-Analysis-in-Python
- Note when taking course Intermediate Network Analysis by Datacamp
+# two notes about Graph Neural Network
+
+## Intermediate-Network-Analysis-in-Python
+Note when taking course Intermediate Network Analysis in Datacamp, introduction to graph concepts, basic library(networkx, pytorch_geo, etc) and its application in recommendation system.
+ 
+## GNN
+Note when taking course gnn in Udemy, more advanced. Graph, GCN(Graph Convolutional Network), aggregation methods like deep walk, embedding, etc.
