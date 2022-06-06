@@ -3,12 +3,23 @@
 ## Graph Embedding Problem Statement
 
 Embedding
-- encoder  
+- Encoder  
 - **similarity** of the nodes and the embedding nodes **almost the same**  
 - $S_G$ => $S_E$ - old space to new space  
-- Message Passing Framework is a Embedding, Encoder
-- other methods:
-- deepwalk, popular before GNN
+- **Message Passing Framework** is a Embedding method, Encoder, Both SGC and GCN are based on this method
+- other methods: deepwalk, popular before GNN
+
+Diff Levels of Embedding
+- Node embedding
+- Edge embedding
+- Global embedding
+
+Data Format (Input for embedding)
+- nodes as list
+- edges as list
+- Adjacency list
+- 这种存储方式数据密集，且可以调换节点的存储顺序，只需要在edges及adjacency进行调整即可
+
 
 ## Deep Walk
 **Goal**: $S_G(u,v)$ => $S_E(z_u, z_v)$  
@@ -82,10 +93,20 @@ print('AUC:',ML_acc)
 
 ## Node2Vec
 
-random walk
+- random walk -> walk with strategy
 - Depend by walk length
-- Depth first search(DFS): more global - q1
-- Breadth first search(BFS): more local - q2F
+- Depth first search(DFS): more global/exploration - q1 小
+- Breadth first search(BFS): more local - p2 小
+
+process
+-  define graph 
+- define p,q
+- do sampling to get series
+- skipGram to sampled series
+- get embedding model and embedding of nodes
+
+embedding of edges
+- average of nodes / sum, max
 
 ```
 " Some codes are the same as the previous code "
@@ -109,13 +130,35 @@ Workshop+-+Node2Vec_TorchGeo.py
 
 
 
-## GNN Motivation
+
+
+
+## GNN
 
 Deppwalk和Node2Vec 的不足
 - no parameter sharing: 每个node有自己的walk和计算，computation expensive
 - no semantic info: Feature nodes not considered
 - Not inductive: cannnot predict embedding for unseen data
 
+**Definition**
+a transformation on attributes of the graph (including nodes, edges, global graph), not change the connection relationship between nodes
+
+Input a vector, ouput a vector (both are node features / edge features)
+
+**eg (simple)**. MLP to transform node vector to a new node vector
+diff nodes use the same MLP
+too simple -> use Message Passing Framework
+
+**Message Passing Framework**
+Both SGC and GCN are based on this method
+Nodes get info from neibors and are fed into a MLP (1 layer)
+
+What to do after the transformation: ML for classfication based on node vectors
+
+**Pooling**
+目的1：使用edge算node，使用node算edge，可以补充空信息的顶点
+目的2：互相更新，更高效使用图的信息
+先后顺序？可以直接交互更新
 
 
 
@@ -125,7 +168,33 @@ SGC drawbacks:
 - all neighbors are treated equally, not weighted
 - The shifting $\widetilde{S}^k$ is based on averaging, while averaging maybe not right
 
-
 ```
 Workshop+-+SGC.py
 ```
+
+
+
+
+
+## GCN:  Graph Convolution Network
+
+Diff to SGC: 
+SGC use K step iteration, using the K-1 state
+GCN use W and n-1 Layers 
+
+W project matrix, project features into a new space, linear projection
+100 dimensions to 50, 
+
+
+
+How to update the graph
+$H^{l+1} = {\sigma} (\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2} H^l W^l) $
+
+- where 
+    - H表示特征矩阵，各个节点的特征
+    - $\hat{A} = A  + I$, 表示对节点及节点周边进行相加
+    - A: Adjcency Matrix
+    - I: Identity Matrix, 单位矩阵
+    - $\hat{D} = \sum_j \hat{A}_{ij}$, 即对$\hat{A}$按行求和，将和放在对角线上，度矩阵，表示节点的度
+    - $\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2}$, 在每一层固定不变，实际是节点加和后的归一化
+    - ${\sigma}$, Relu sigmoid etc
