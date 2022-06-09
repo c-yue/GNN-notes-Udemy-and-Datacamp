@@ -21,6 +21,8 @@ Data Format (Input for embedding)
 - 这种存储方式数据密集，且可以调换节点的存储顺序，只需要在edges及adjacency进行调整即可
 
 
+
+
 ## Deep Walk
 **Goal**: $S_G(u,v)$ => $S_E(z_u, z_v)$  
 
@@ -88,6 +90,7 @@ y_predict = ML_model.predict(x_test)
 ML_acc = roc_auc_score(y_test,y_predict)
 print('AUC:',ML_acc)
 ```
+
 
 
 
@@ -162,6 +165,8 @@ What to do after the transformation: ML for classfication based on node vectors
 
 
 
+
+
 ## SGC： Simplifying Graph Convolution Network
 
 SGC drawbacks:
@@ -175,26 +180,43 @@ Workshop+-+SGC.py
 
 
 
-
 ## GCN:  Graph Convolution Network
 
 Diff to SGC: 
 SGC use K step iteration, using the K-1 state
 GCN use W and n-1 Layers 
 
-W project matrix, project features into a new space, linear projection
-100 dimensions to 50, 
+W project matrix, , 
 
-
-
-How to update the graph
-$H^{l+1} = {\sigma} (\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2} H^l W^l) $
+**How to update the graph**
+$V^{l+1} = {\sigma} (\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2} V^l W^l) $
 
 - where 
-    - H表示特征矩阵，各个节点的特征
-    - $\hat{A} = A  + I$, 表示对节点及节点周边进行相加
+    - V表示特征矩阵，各个节点的特征
+    - $\hat{A} = A  + I$, adding self-loop to the network
     - A: Adjcency Matrix
     - I: Identity Matrix, 单位矩阵
     - $\hat{D} = \sum_j \hat{A}_{ij}$, 即对$\hat{A}$按行求和，将和放在对角线上，度矩阵，表示节点的度
-    - $\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2}$, 在每一层固定不变，实际是节点加和后的归一化
+    - $\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2}$, normalized features sum, constant in diff layers, 在每一层固定不变，实际是节点加和后的归一化
+    - $W^l-1$ project features into a new space, linear projection, the parameters to be learned
+100 dimensions to 50
     - ${\sigma}$, Relu sigmoid etc
+
+- eg.
+    - N nodes with M features
+    - V is N * M
+    - W is M * D, D is the projected dimensions, a hyper parameter
+    - VM is N * D
+    - $\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2}$ has the sam dim as A, N*N
+    - $(\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2} V^l W^l)$ is N*D
+
+- eg. for GCN application in classification
+    - graph nodes after 4 layers of GCN
+    - all nodes have features with dim 4
+    - softmax for classification for every node
+
+
+
+
+## GAT: Graph Attention Network
+https://www.udemy.com/course/graph-neural-network/learn/lecture/26621770#overview
